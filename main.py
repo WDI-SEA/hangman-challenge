@@ -61,15 +61,30 @@ for i in random_word:
 print(f"this is user_view after loop - {user_view}")
 
 
-# word_len = int(len(random_word))
-# secret_word = "_" * word_len
-# print(f"this is the secret - {secret_word}")
-# for i in range(word_len):
-# 	print(f" this is i in the range - {i}")
-
 # # prompt asking for user guess
-# guess = input("what letter would you like to guess ")
-# print(guess)
+guess = input("what letter would you like to guess ")
+print(f"you guessed the letter {guess}")
+
+for i in random_word:
+	# print(f"this is i in random word - {i}")
+	if i == guess:
+		print("correct")
+		letter_index = int(random_word.find(i))
+		print(f"this is the correct letters index in the string - {letter_index}")
+		def replacer(old_string, new_string, index):
+			if index < 0:  # add it to the beginning
+				return new_string + old_string
+			if index > len(old_string):  # add it to the end
+				return old_string + new_string
+			# insert the new string between "slices" of the original
+			return old_string[:index] + new_string + old_string[index + 1:]
+		updated_view = replacer(user_view, guess, letter_index)
+		print(f"this is updated_view after replace - {updated_view}")
+	else:
+		print(":(")
+
+
+
 # for i in random_word:
 # 	# print(f"this is the i in random_word - {i}")
 # 	if i == guess:
