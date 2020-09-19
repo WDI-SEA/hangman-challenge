@@ -7,7 +7,21 @@ def hangman(lst1):
     print(word)
     result_spaces = "_ " * len(word)
     letters_guess = []
+    good_guess = []
     tries_left = 6
+
+    def try_win(word, good_guess):
+        if len(word) == len(good_guess):
+            print("congratulations you win! The word was: "+word)
+            pa = input("Want to play again? (Y/N)")
+            playagain = pa.upper()
+            if playagain == 'Y':
+                return hangman(word_list)
+            else:
+                exit()
+        else:
+            return False
+
 
     while tries_left > 0:
         print(result_spaces)
@@ -28,8 +42,10 @@ def hangman(lst1):
                 if answer_list[i] == guess:
                     position = i * 2
                     word_guess_list.insert(position, answer_list[i])
+                    good_guess.append(guess)
                     word_guess_list.pop(position+1)
                     result_spaces = "".join(word_guess_list)
+            try_win(word, good_guess)
             print("Good job the Letter: "+guess+" is in the word")
             tries_left -= 1
     if tries_left == 0:
@@ -45,5 +61,5 @@ def hangman(lst1):
 hangman(word_list)
 
 # todo:
-# prints all letters :)
-# need a winning condition that works
+# animation no idea how to make it on a console (plus is boring) might try pygame
+# not so happy with the word list might try to get a word list online
