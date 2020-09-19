@@ -6,8 +6,6 @@ def hangman(lst1):
     word = word1.upper()
     print(word)
     result_spaces = "_ " * len(word)
-
-    # print(result_spaces)
     letters_guess = []
     tries_left = 6
 
@@ -30,7 +28,7 @@ def hangman(lst1):
                 if answer_list[i] == guess:
                     position = i * 2
                     word_guess_list.insert(position, answer_list[i])
-                    word_guess_list.pop(i+1)
+                    word_guess_list.pop(position+1)
                     result_spaces = "".join(word_guess_list)
             print("Good job the Letter: "+guess+" is in the word")
             tries_left -= 1
@@ -47,7 +45,5 @@ def hangman(lst1):
 hangman(word_list)
 
 # todo:
-# adds a letter but wont work for rest
-# also the "_" " "  gets messed up, might have to do it without spaces
-# really want to keep something to separate it, might just use "-"
-
+# prints all letters :)
+# need a winning condition that works
