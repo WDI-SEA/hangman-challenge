@@ -6,8 +6,7 @@ def hangman(lst1):
     word = word1.upper()
     print(word)
     result_spaces = "_ " * len(word)
-    wordlist = list(result_spaces)
-    print(wordlist)
+
     # print(result_spaces)
     letters_guess = []
     tries_left = 6
@@ -25,9 +24,16 @@ def hangman(lst1):
             print("You have: "+str(tries_left)+" tries left!")
         else:
             letters_guess.append(guess)
-            if guess in word:
-                print("Good job the Letter: "+guess+" is in the word")
-                tries_left -= 1
+            word_guess_list = list(result_spaces)
+            answer_list = list(word)
+            for i in range(len(answer_list)):
+                if answer_list[i] == guess:
+                    position = i * 2
+                    word_guess_list.insert(position, answer_list[i])
+                    word_guess_list.pop(i+1)
+                    result_spaces = "".join(word_guess_list)
+            print("Good job the Letter: "+guess+" is in the word")
+            tries_left -= 1
     if tries_left == 0:
         print("Better luck next time, the word was: ", word)
         pa = input("Want to play again? (Y/N)")
@@ -41,7 +47,7 @@ def hangman(lst1):
 hangman(word_list)
 
 # todo:
-# find a way to find the index of the word  add them on result result_spaces
-# will probably use a list() and "".join
-# remember that I use "_ " with a space so it will have to be the index * 2
-# take way the print(listword)
+# adds a letter but wont work for rest
+# also the "_" " "  gets messed up, might have to do it without spaces
+# really want to keep something to separate it, might just use "-"
+
