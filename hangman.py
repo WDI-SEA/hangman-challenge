@@ -32,8 +32,9 @@ def hangman(lst1):
             print('Good job the letter '+guess+' is in the word')
             index = word_copy.index(guess)
             result_spaces = letter_print(index, word_copy, result_spaces)
-            word_copy = replace_letter(index, word_copy)
-            # print(word_copy)
+            word_copy = replace_letter(index, word_copy) 
+            check_list(word_copy)
+            print(word_copy)
         else:
             tries_left -= 1
             print('Sorry that letter was incorrect')
@@ -104,6 +105,18 @@ def replace_letter(index, lst):
             lst[i] = '.'
     return lst 
 
+def check_list(word_copy):
+    ele = word_copy[0]
+    chck = True
+    for item in word_copy:
+        if ele != item:
+            chck = False
+            break
+    if (chck == True):
+        print('YOU WIN')
+        quit()
+    else:
+        print('not equal')
 
 hangman(word_list)
 
