@@ -1,12 +1,28 @@
 # main.py
 from random import shuffle
 
+# |----------I
+# |          |
+# |          0
+# |
+# |
+# |
+# |
+# |
+# |_______________________
+#
+
+#  👱🏼‍♂️
+# 🦾👕🤳🏼‍
+#   🩳
+#  🦴 🦿
+#
 
 #  i need to create a hangman game
-# [ ] Store a list (or tuple) of 5 to 10 words in your script.
-# [ ] Randomly choose a word from this list as the secret word.
-# [ ] Display the unrevealed word as underscores (with the same length.)
-# [ ] Prompt the user to enter a letter.
+# [X] Store a list (or tuple) of 5 to 10 words in your script.
+# [X] Randomly choose a word from this list as the secret word.
+# [X] Display the unrevealed word as underscores (with the same length.)
+# [X] Prompt the user to enter a letter.
 # [ ] If the letter is in the word, mark it as revealed and visually display that letter in the word.
 # [ ] If the letter is incorrect, draw another part onto the stick person.
 
@@ -45,19 +61,17 @@ for i in random_word:
 	# 	print("dying")
 
 
-# |----------I
-# |          |
-# |          0
-# |
-# |
-# |
-# |
-# |
-# |_______________________
-#
 
-#  👱🏼‍♂️
-# 🦾👕🤳🏼‍
-#   🩳
-#  🦴 🦿
-#
+
+
+
+
+
+
+
+
+
+
+
+
+
