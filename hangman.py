@@ -6,11 +6,14 @@ def hangman(lst1):
     word = word1.upper()
     print(word)
     result_spaces = "_ " * len(word)
-    print(result_spaces)
+    wordlist = list(result_spaces)
+    print(wordlist)
+    # print(result_spaces)
     letters_guess = []
     tries_left = 6
 
     while tries_left > 0:
+        print(result_spaces)
         guess = input("Enter a letter: ").upper()
         if len(guess) > 1:
             print("Please enter only one letter")
@@ -36,3 +39,9 @@ def hangman(lst1):
 
 
 hangman(word_list)
+
+# todo:
+# find a way to find the index of the word  add them on result result_spaces
+# will probably use a list() and "".join
+# remember that I use "_ " with a space so it will have to be the index * 2
+# take way the print(listword)
