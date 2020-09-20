@@ -27,9 +27,13 @@ class Game:
 
   def take_turn(self):
     self.game_over = False
+
     if self.game_over == False:
       turn = input('enter a letter\n')
       print(f'HERES THE TURN {turn}')
+
+      chars_found = [i for i in range(len(self.word)) if self.word[i] == turn]
+      print(f'CHARS FOUND : {chars_found}')
       if turn in self.word:
         print('thats true')
         self.take_turn()
@@ -37,11 +41,13 @@ class Game:
         print('thats false')
         self.wrong_guesses += 1
         print('wrong_guesses : {}'.format(self.wrong_guesses))
+
         if self.wrong_guesses >= 5:
           self.game_over = True
           print('Game Over!')
         else:
           self.take_turn()
+
 
 new_game = Game()
 print(new_game)
