@@ -11,11 +11,12 @@ seed()
 class Game:
   def __init__(self):
     # get a word from a random index of word_bank
-    self.word = word_bank[randint(0, len(word_bank) - 1)]
+    self.word = list(word_bank[randint(0, len(word_bank) - 1)])
     self.game_over = True
     self.hangman = '-o-|-<'
     self.letters = [] # display letters chosen by the player
     self.display = ['_'] * len(self.word)# generate a string/array the same len of self.word consisting only of underscores
+    self.wrong_guesses = 0
 
   def __str__(self):
     # print current Game's word
@@ -25,22 +26,23 @@ class Game:
     its len is {len(self.display)}'''
 
   def take_turn(self):
-    turn = input('enter a letter\n')
-    print(f'HERES THE TURN {turn}')
-    if turn in self.word:
-      print('thats true')
-    else:
-      print('thats false')
+    self.game_over = False
+    if self.game_over == False:
+      turn = input('enter a letter\n')
+      print(f'HERES THE TURN {turn}')
+      if turn in self.word:
+        print('thats true')
+        self.take_turn()
+      else:
+        print('thats false')
+        self.wrong_guesses += 1
+        print('wrong_guesses : {}'.format(self.wrong_guesses))
+        if self.wrong_guesses >= 5:
+          self.game_over = True
+          print('Game Over!')
+        else:
+          self.take_turn()
 
-class Word(Game):
-  def __init__(self):
-    # we pass in letters because the parent class
-    # needs access to that information
-    super().__init__()
-    self.letters = []
-
-
-
-
-new_game = print(Game())
-Game().take_turn()
+new_game = Game()
+print(new_game)
+new_game.take_turn()
