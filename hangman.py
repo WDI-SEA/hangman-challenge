@@ -1,5 +1,4 @@
-from random import seed
-from random import randint
+from random import seed, randint
 
 word_bank = ['booger', 'ostrich', 'dinosaur', 'tweaker', 'hamburger', 'orange', 'television', 'fungus', 'tarantula', 'bulging']
 
@@ -13,7 +12,8 @@ class Game:
     # get a word from a random index of word_bank
     self.word = list(word_bank[randint(0, len(word_bank) - 1)])
     self.game_over = True
-    self.hangman = '-o-|-<'
+    self.hangman = ['-', '-o', '-o-', '-o-|', '-o-|-', '-o-|-<']
+    self.hangman_display = self.hangman[0]
     self.guesses = [] # display letters chosen by the player
     self.display = ['_'] * len(self.word) # generate a string/array the same len of self.word consisting only of underscores
     self.wrong_guesses = 0
@@ -29,35 +29,44 @@ class Game:
     self.game_over = False
 
     if self.game_over == False:
-      guess = input('enter a letter\n')
-      print(f'HERES THE TURN {guess}')
+      print('------------------------------------\n')
+      if self.guesses:
+        print('\nGUESSES: \n{}\n'.format(self.guesses))
+      print('THE GALLOWS: \n\n{}\n'.format(self.hangman_display))
+      print('SECRET WORD: \n {}\n'.format(self.display))
+      guess = input('Enter a Letter\n')
+      # print(f'HERES THE TURN {guess}')
       # DONE replace underscore with correct guess at indeces found
       chars_found = [i for i in range(len(self.word)) if self.word[i] == guess]
 
       if chars_found:
         for i in range(len(chars_found)):
-          index = chars_found[i]
-          print('CHARS FOUND ', index)
-          self.display[index] = guess
-        print('UPDATED DISPLAY : ', self.display)
+          index = chars_found[i] # store the indeces of the word where guess letter matches
+          # print('CHARS FOUND ', index)
+          self.display[index] = guess # change the display word at the found indeces to match user guess
+        # print('UPDATED DISPLAY : ', self.display)
         self.guesses.append(guess)
-        print('GUESSES : ', self.guesses)
+        
         if '_' not in self.display:
           self.game_over = False
+          print(''.join(self.word))
           print('YOU WIN!')
         else:
           self.take_turn() # recursive call
+
       else:
         self.guesses.append(guess)
         self.wrong_guesses += 1
-        print('wrong_guesses : {}'.format(self.wrong_guesses))
+        self.hangman_display = self.hangman[self.wrong_guesses]
+        # print(self.hangman_display)
+        # print('wrong_guesses : {}'.format(self.wrong_guesses))
         if self.wrong_guesses >= 5:
           self.game_over = True
           print('Game Over!')
         else:
           self.take_turn()
 
-
+print('!HANGED-MAN!\n')
 new_game = Game()
-print(new_game)
+# print(new_game)
 new_game.take_turn()
