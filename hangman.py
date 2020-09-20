@@ -14,7 +14,7 @@ class Game:
     self.word = list(word_bank[randint(0, len(word_bank) - 1)])
     self.game_over = True
     self.hangman = '-o-|-<'
-    self.letters = [] # display letters chosen by the player
+    self.guesses = [] # display letters chosen by the player
     self.display = ['_'] * len(self.word) # generate a string/array the same len of self.word consisting only of underscores
     self.wrong_guesses = 0
 
@@ -29,32 +29,28 @@ class Game:
     self.game_over = False
 
     if self.game_over == False:
-      turn = input('enter a letter\n')
-      print(f'HERES THE TURN {turn}')
-
-      chars_found = [i for i in range(len(self.word)) if self.word[i] == turn]
-      
-      # TODO replace underscore with correct guess at indeces found
-
-      # print(f'CHARS FOUND : {chars_found}')
+      guess = input('enter a letter\n')
+      print(f'HERES THE TURN {guess}')
+      # DONE replace underscore with correct guess at indeces found
+      chars_found = [i for i in range(len(self.word)) if self.word[i] == guess]
 
       if chars_found:
-
-        # for i in range(len(chars_found)):
-        #   self.display[chars_found[i]] == turn 
         for i in range(len(chars_found)):
           index = chars_found[i]
           print('CHARS FOUND ', index)
-          self.display[index] = turn
+          self.display[index] = guess
         print('UPDATED DISPLAY : ', self.display)
-
-        print('thats true')
-        self.take_turn()
+        self.guesses.append(guess)
+        print('GUESSES : ', self.guesses)
+        if '_' not in self.display:
+          self.game_over = False
+          print('YOU WIN!')
+        else:
+          self.take_turn() # recursive call
       else:
-        print('thats false')
+        self.guesses.append(guess)
         self.wrong_guesses += 1
         print('wrong_guesses : {}'.format(self.wrong_guesses))
-
         if self.wrong_guesses >= 5:
           self.game_over = True
           print('Game Over!')
