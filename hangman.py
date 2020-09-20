@@ -5,8 +5,6 @@ word_bank = ['booger', 'ostrich', 'dinosaur', 'tweaker', 'hamburger', 'orange', 
 # seed random number each time the script is run based on system time
 seed()
 
-
-
 class Game:
   def __init__(self):
     # get a word from a random index of word_bank
@@ -89,7 +87,7 @@ class Game:
         print('\nGUESSES: \n{}\n'.format(self.guesses))
       print('THE GALLOWS: \n\n{}\n'.format(self.hangman_display))
       print('SECRET WORD: \n\n {}\n'.format(' '.join(self.display)))
-      guess = input('Enter a Letter: ')
+      guess = input('Enter a Letter or Solve: ')
       # if the user enters the entire word correctly
       if guess == ''.join(self.word):
         self.game_over = True
@@ -123,5 +121,4 @@ class Game:
 
 print('\n!HANGED-MAN!\n')
 new_game = Game()
-print(new_game)
 new_game.take_turn()
