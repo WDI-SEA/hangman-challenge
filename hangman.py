@@ -90,9 +90,14 @@ class Game:
       print('THE GALLOWS: \n\n{}\n'.format(self.hangman_display))
       print('SECRET WORD: \n\n {}\n'.format(' '.join(self.display)))
       guess = input('Enter a Letter: ')
+      # if the user enters the entire word correctly
+      if guess == ''.join(self.word):
+        self.game_over = True
+        print('\nThe secret word was: '+''.join(self.word) + '\n\nYOU WIN!\n')
+        return
+
       # replace underscore with correct guess at indeces found
       chars_found = [i for i in range(len(self.word)) if self.word[i] == guess]
-
       if chars_found:
         for i in range(len(chars_found)):
           index = chars_found[i] # store the indeces of the word where guess letter matches
@@ -118,4 +123,5 @@ class Game:
 
 print('\n!HANGED-MAN!\n')
 new_game = Game()
+print(new_game)
 new_game.take_turn()
