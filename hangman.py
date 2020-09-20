@@ -15,7 +15,7 @@ class Game:
     self.game_over = True
     self.hangman = '-o-|-<'
     self.letters = [] # display letters chosen by the player
-    self.display = ['_'] * len(self.word)# generate a string/array the same len of self.word consisting only of underscores
+    self.display = ['_'] * len(self.word) # generate a string/array the same len of self.word consisting only of underscores
     self.wrong_guesses = 0
 
   def __str__(self):
@@ -33,8 +33,21 @@ class Game:
       print(f'HERES THE TURN {turn}')
 
       chars_found = [i for i in range(len(self.word)) if self.word[i] == turn]
-      print(f'CHARS FOUND : {chars_found}')
-      if turn in self.word:
+      
+      # TODO replace underscore with correct guess at indeces found
+
+      # print(f'CHARS FOUND : {chars_found}')
+
+      if chars_found:
+
+        # for i in range(len(chars_found)):
+        #   self.display[chars_found[i]] == turn 
+        for i in range(len(chars_found)):
+          index = chars_found[i]
+          print('CHARS FOUND ', index)
+          self.display[index] = turn
+        print('UPDATED DISPLAY : ', self.display)
+
         print('thats true')
         self.take_turn()
       else:
