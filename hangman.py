@@ -47,7 +47,6 @@ def hangman(lst1):
                     result_spaces = "".join(word_guess_list)
             try_win(word, good_guess)
             print("Good job the Letter: "+guess+" is in the word")
-            tries_left -= 1
     if tries_left == 0:
         print("Better luck next time, the word was: ", word)
         pa = input("Want to play again? (Y/N)")
