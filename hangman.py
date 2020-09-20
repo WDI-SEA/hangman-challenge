@@ -4,8 +4,6 @@ word_bank = ['booger', 'ostrich', 'dinosaur', 'tweaker', 'hamburger', 'orange', 
 
 # seed random number each time the script is run based on system time
 seed()
-# DONE display secret word as underscores
-# 
 
 class Game:
   def __init__(self):
@@ -35,22 +33,18 @@ class Game:
       print('THE GALLOWS: \n\n{}\n'.format(self.hangman_display))
       print('SECRET WORD: \n {}\n'.format(self.display))
       guess = input('Enter a Letter\n')
-      # print(f'HERES THE TURN {guess}')
-      # DONE replace underscore with correct guess at indeces found
+      # replace underscore with correct guess at indeces found
       chars_found = [i for i in range(len(self.word)) if self.word[i] == guess]
 
       if chars_found:
         for i in range(len(chars_found)):
           index = chars_found[i] # store the indeces of the word where guess letter matches
-          # print('CHARS FOUND ', index)
           self.display[index] = guess # change the display word at the found indeces to match user guess
-        # print('UPDATED DISPLAY : ', self.display)
         self.guesses.append(guess)
         
         if '_' not in self.display:
           self.game_over = False
-          print(''.join(self.word))
-          print('YOU WIN!')
+          print('\nThe secret word was: '+''.join(self.word) + '\n\nYOU WIN!\n')
         else:
           self.take_turn() # recursive call
 
@@ -58,15 +52,12 @@ class Game:
         self.guesses.append(guess)
         self.wrong_guesses += 1
         self.hangman_display = self.hangman[self.wrong_guesses]
-        # print(self.hangman_display)
-        # print('wrong_guesses : {}'.format(self.wrong_guesses))
         if self.wrong_guesses >= 5:
           self.game_over = True
-          print('Game Over!')
+          print('\nGAME OVER!')
         else:
           self.take_turn()
 
 print('!HANGED-MAN!\n')
 new_game = Game()
-# print(new_game)
 new_game.take_turn()
