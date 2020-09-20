@@ -63,3 +63,4 @@ hangman(word_list)
 # todo:
 # animation no idea how to make it on a console (plus is boring) might try pygame
 # not so happy with the word list might try to get a word list online
+# last try and correct word are mix, must fix
