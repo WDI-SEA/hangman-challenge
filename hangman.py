@@ -12,11 +12,11 @@ def hang_man():
             letter = str(input("Enter a Letter:\n"))
             if letter in random_word:
                 for i, j in enumerate(random_word):
-                    print(i, j, str(enumerate(random_word)))
+                    # print(i, j, str(enumerate(random_word)))
                     if j is letter:
                         output[i] = letter
                         new_output = ''.join(output)
-                        print(new_output)
+                        print(' '.join(output))
                         if new_output == random_word:
                             print("You've won!")
                             return
