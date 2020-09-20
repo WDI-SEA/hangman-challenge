@@ -5,16 +5,73 @@ word_bank = ['booger', 'ostrich', 'dinosaur', 'tweaker', 'hamburger', 'orange', 
 # seed random number each time the script is run based on system time
 seed()
 
+
+
 class Game:
   def __init__(self):
     # get a word from a random index of word_bank
     self.word = list(word_bank[randint(0, len(word_bank) - 1)])
     self.game_over = True
-    self.hangman = ['-', '-o', '-o-', '-o-|', '-o-|-', '-o-|-<']
-    self.hangman_display = self.hangman[0]
-    self.guesses = [] # display letters chosen by the player
     self.display = ['_'] * len(self.word) # generate a string/array the same len of self.word consisting only of underscores
+    self.guesses = [] # display letters chosen by the player
     self.wrong_guesses = 0
+    # array of possible hangman animations
+    self.hangman = [''' 
+    _____
+    |    |
+    |    
+    |   
+    |    
+    |
+    -
+    ''',
+    ''' 
+    _____
+    |    |
+    |    O
+    |   
+    |    
+    |
+    -
+    ''',
+    ''' 
+    _____
+    |    |
+    |    O
+    |    |
+    |    
+    |
+    -
+    ''',
+    ''' 
+    _____
+    |    |
+    |    O
+    |   -|-
+    |    
+    |
+    -
+    ''',
+    ''' 
+    _____
+    |    |
+    |    O
+    |   -|-
+    |    /
+    |
+    -
+    ''',
+    ''' 
+    _____
+    |    |
+    |    O
+    |   -|-
+    |    /\\
+    |
+    -
+    ''']
+    self.hangman_display = self.hangman[0]
+
 
   def __str__(self):
     # print current Game's word
@@ -27,12 +84,12 @@ class Game:
     self.game_over = False
 
     if self.game_over == False:
-      print('------------------------------------\n')
+      print('\n------------------------------------\n')
       if self.guesses:
         print('\nGUESSES: \n{}\n'.format(self.guesses))
       print('THE GALLOWS: \n\n{}\n'.format(self.hangman_display))
-      print('SECRET WORD: \n {}\n'.format(self.display))
-      guess = input('Enter a Letter\n')
+      print('SECRET WORD: \n\n {}\n'.format(' '.join(self.display)))
+      guess = input('Enter a Letter: ')
       # replace underscore with correct guess at indeces found
       chars_found = [i for i in range(len(self.word)) if self.word[i] == guess]
 
@@ -54,10 +111,11 @@ class Game:
         self.hangman_display = self.hangman[self.wrong_guesses]
         if self.wrong_guesses >= 5:
           self.game_over = True
-          print('\nGAME OVER!')
+          print('\nTHE GALLOWS: \n\n{}\n'.format(self.hangman_display))
+          print('\nThe secret word was: '+''.join(self.word) + '\n\n!GAME OVER!\n')
         else:
           self.take_turn()
 
-print('!HANGED-MAN!\n')
+print('\n!HANGED-MAN!\n')
 new_game = Game()
 new_game.take_turn()
