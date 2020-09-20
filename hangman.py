@@ -28,24 +28,41 @@ def hangman():
     word = get_words(secret_words)
     word_letter = set(word)  # letter in word
     alphabet = set(string.ascii_lowercase) # from english dictionary
-    used_letters = set() # Display the letters guessed so far.
+    guessed_list = set() # Display the letters guessed so far.
     numbers = 6 # Display hangman or number of guesses remaining.
 
     # Ask the user for a letter.
-    input_letter = input('Guess a letter: ').lower() # lower case for input
-    # Determine if letter is correct or incorrect.
-    # If incorrect, add the letter to the guessed list, decrement remaining guesses, and/or draw another bit of the hangman.
-    # If correct, add the letter to the guessed list, redraw the secret word with the new letter(s) showing.
-    if input_letter in alphabet - used_letters:
-        used_letters.add(input_letter)
-        if input_letter in word_letter:
-            word_letter.remove(input_letter)
-            print('')
+    # Loop back up to step 6 and continue until the word is fully revealed or guesses are used up.
+    while len(word_letter) > 0:
+        print('You have ', numbers, 'lives left! And you guessed these letters: ',''.join(guessed_list))
+
+        # diplaying the secret words which guessing
+        word_list = [letter if letter in used_letter else '-' for letter in word]
+        print('Secret Words: ', ''.join(word_list))
+
+        input_letter = input('Guess a letter: ').lower() # lower case for input
+        # Determine if letter is correct or incorrect.
+    
+        if input_letter in alphabet - guessed_list:
+            guessed_list.add(input_letter)
+            if input_letter in word_letter:
+                #if is correct add the letter to the guessed list, redraw the secret word with the new letter(s) showing.
+                word_letter.remove(input_letter)
+                print('')
+            else:
+                # If incorrect, add the letter to the guessed list, decrement remaining guesses, and/or draw another bit of the hangman.
+                numbers = numbers - 1  # takes away a life if wrong guess
+                print('\nYour letter,',input_letter, 'is not in the list')
+        elif input_letter in guessed_list:
+            print('\n This letter already used! Guess a new letter!')
         else:
-            print('\nYour letter,',input_letter, 'is not in the list')
-    elif input_letter in used_letters:
-        print('\n This letter already used! Guess a new letter!')
+            print('n\That is not a valid letter! Guess a new letter!)
+
+    # gets here when len(word_letters) == 0 OR when numbers == 0
+    if numbers == 0:
+        print('You died, sorry. The word was', word)
     else:
-        print('n\That is not a valid letter! Guess a new letter!)
+        print('YAY! You guessed the word', word, '!!')
 
-
+if __name__ == '__main__':
+    hangman()
