@@ -31,3 +31,21 @@ def hangman():
     used_letters = set() # Display the letters guessed so far.
     numbers = 6 # Display hangman or number of guesses remaining.
 
+    # Ask the user for a letter.
+    input_letter = input('Guess a letter: ').lower() # lower case for input
+    # Determine if letter is correct or incorrect.
+    # If incorrect, add the letter to the guessed list, decrement remaining guesses, and/or draw another bit of the hangman.
+    # If correct, add the letter to the guessed list, redraw the secret word with the new letter(s) showing.
+    if input_letter in alphabet - used_letters:
+        used_letters.add(input_letter)
+        if input_letter in word_letter:
+            word_letter.remove(input_letter)
+            print('')
+        else:
+            print('\nYour letter,',input_letter, 'is not in the list')
+    elif input_letter in used_letters:
+        print('\n This letter already used! Guess a new letter!')
+    else:
+        print('n\That is not a valid letter! Guess a new letter!)
+
+
