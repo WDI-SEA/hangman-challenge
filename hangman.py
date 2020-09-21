@@ -14,6 +14,8 @@ def game_init():
     guessed_letters = []
     reveal_word = ""
 
+    # guessed letter 
+
     print(spaces)
 
     while guesses > attempts:
@@ -32,6 +34,7 @@ def game_init():
                 break
             else:
                 print(f'Letter {user_answer} was not found! Try again.')
+                guessed_letters.append(user_answer)
                 print(' '.join(spaces))
                 guesses -= 1
                 print(f'You have {guesses} remaining')
