@@ -2,30 +2,44 @@ from random import choice
 # list of words
 # choice method selects a random word from list 
 list = choice(["underscores", "corgis", "ramen", "pseudocode", "variables", "reveal", "preferably"])
-print(list)
+# print(list) ---test out random word generator
 
-out = ""
-# for loop 
-for letter in list:
-    out = out + "_"
-print("Guess a letter:", out)
+# empty list where correct letters are added
+guessed = []
 
-# input find out what the player typed
-guess = input()
+#loops that asks for letters
+while True:
+    out = ""
+    # for loop 
+    for letter in list:
+        if letter in guessed:
+            out = out + letter
+        else:
+            out = out + "_"
 
-#find out if the letter is in the word
-if guess in list:
-    print("Correct! 😁")
-else:
-    print("Try again")
-
-# game functionality
-# def hangman(guesses):
-#     # declare number of turns player will have
-#     turns = 7
-#     # randomly chooses a word from list
-#     random_word = random.choice(list).lower()
-#     correct_guess = [""]
+    if out == list:
+        print("You guessed", list)
+        break
 
 
-# def getRandomWord(words):
+    print("Guess the word:", out)
+
+    # input finds out what the player typed
+    guess = input()
+
+    #find out if the letter is in the word
+    #if you guess a letter that is already in the guessed list
+    if guess in guessed:
+        print("Already guessed:", guess)
+    elif guess in list:
+        print("Correct! 😁")
+        # if the guessed letter is in the random word, append it and display that letter
+        guessed.append(guess)
+    #incorrect letter guess
+    else:
+        print("Try again")
+    
+    print()
+
+# If the letter is incorrect, draw another part onto the stick person.
+
