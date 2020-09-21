@@ -1,13 +1,11 @@
 from random import choice
-# list of words
-# choice method selects a random word from list 
-list = choice(["underscores", "corgis", "ramen", "pseudocode", "variables", "reveal", "preferably", "explore", "action", "coffee", "print"])
-# print(list) ---test out random word generator
-
 
 #main game logic
-#loops that asks for letters
 def hangman():
+    # choice method selects a random word from list 
+    list = choice(["underscores", "corgis", "ramen", "pseudocode", "variables", "reveal", "preferably", "explore", "action", "coffee", "print"])
+    # print(list) ---test out random word generator
+
     # declare number of turns
     turns = 7
 
@@ -55,21 +53,25 @@ def hangman():
 
     if turns:
         print("You guessed the correct word:", list,"!")
+        playAgain()
     else:
         print("You didn't get this word:", list,"😔")
-        playAgain = input("Do you want to play again? (y/n)\n")
-        if playAgain == "y":
-            #initialize start of game again
-            print("start new game")
-        else:
-            print("See you later!")
+        playAgain()       
+#hangman()
 
+def playAgain():
+    playAgain = input("Do you want to play again? (y/n)\n")
+    if playAgain == "y":
+        hangman()
+    else:
+        print("See ya l8ter when you're brave enough to play!")
 
 def startGame():
     play = input("Do you want to play hangman? (y/n)\n")
     # if yes, start the game
     if play == "y":
         hangman()
+    # if no then bye
     else:
         print("See you later!")
 
