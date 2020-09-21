@@ -16,14 +16,15 @@ def hangman():
     word = get_words(secret_words)
     word_letter = set(word)  # letter in word
     alphabet = set(string.ascii_lowercase) # from english dictionary
-    guessed_list = set() # Display the letters guessed so far.
-    numbers = 10 # Display hangman or number of guesses remaining.
+    guessed_list = set() 
+    numbers = 10 
 
     # Ask the user for a letter.
     # Loop back up to step 6 and continue until the word is fully revealed or guesses are used up.
     while len(word_letter) > 0 and numbers > 0:
         print('You have ', numbers, 'lives left! And you guessed these letters: ',''.join(guessed_list))
-
+        # Display the letters guessed so far.
+        # Display hangman or number of guesses remaining.
         # diplaying the secret words which guessing
         word_list = [letter if letter in guessed_list else '-' for letter in word]
         print('Secret Words: ', ''.join(word_list))
