@@ -15,41 +15,40 @@ word_list = [
 
 # Display hangman or number of guesses remaining.
 def show_rose(turns):
-    stages = [ 
-            '''
-           ({@}) 
-            ~|
-             |{*>
-          <*}|
-             |~           
-            ''',
-            '''
-             @
-            ~|
-             |{*>
-          <*}|
-             |~
-            ''',
-            '''
-            ~|
-             |{*>
-          <*}|
-             |~  
-            ''',
-            '''
-             |{*>
-          <*}|
-             |~ 
-            ''',
-            '''
-          <*}|
-             |~ 
-            ''',
-            '''
-                
-             | 
-            '''
-]
+    stages = [  '''
+                   ({@}) 
+                    ~|
+                     |{*>
+                  <*}|
+                     |~           
+                ''',
+                '''
+                     @
+                    ~|
+                     |{*>
+                  <*}|
+                     |~
+                ''',
+                '''
+                    ~|
+                     |{*>
+                  <*}|
+                     |~  
+                ''',
+                '''
+                     |{*>
+                  <*}|
+                     |~ 
+                ''',
+                '''
+                  <*}|
+                     |~ 
+                ''',
+                '''
+
+                     | 
+                '''
+    ]
     return stages[turns]
 
 # Randomly select a secret word.
@@ -63,12 +62,12 @@ def game_init(secret_word):
     guessed = False
     guessed_letters = []
     guessed_words = []
-    turns = 6
+    turns = 5
     print('@ WORD ROSE @')
     print(show_rose(turns))
     print(complete)
     print('\n')
-    while not guessed and turns > 0:
+    while not guessed and turns >= 0:
         # Ask the user for a letter.
         guess = input('Guess a letter or word: ').upper()
         # Determine if letter is correct or incorrect.
@@ -87,7 +86,7 @@ def game_init(secret_word):
                 word_as_list = list(complete)
                 indices = [i for i, letter in enumerate(secret_word) if letter == guess]
                 for index in indices:
-                    word_as_list = guess
+                    word_as_list[index] = guess
                 complete = ''.join(word_as_list)
                 if '@' not in complete:
                     guessed = True
@@ -116,7 +115,7 @@ def game_init(secret_word):
 def main():
     secret_word = choose()
     game_init(secret_word)
-    while input('Play again? (Y/N').upper() == 'Y':
+    while input('Play again? (Y/N)').upper() == 'Y':
         secret_word = choose()
         game_init(secret_word)
 
