@@ -1,5 +1,5 @@
 import random 
-word = ['banana', 'tree', 'plate', 'mirror', 'chair']
+words = ['banana', 'tree', 'plate', 'mirror', 'chair']
 
 # def shuffle(ls):
 #     random.shuffle(ls)
@@ -11,61 +11,66 @@ word = ['banana', 'tree', 'plate', 'mirror', 'chair']
 
 def wrong_answer(count):
     if count == 1:
-        print( "|-\ \n|  0 \n|    \n|")
+        print( "|-\ \n|  0 \n|    \n| \n try again!")
     elif count == 2:
-        print( "|-\ \n|  0 \n|  | \n|")
+        print( "|-\ \n|  0 \n|  | \n| \n try again!")
     elif count == 3:
-        print("|-\ \n|  0 \n| /| \n|")
+        print("|-\ \n|  0 \n| /| \n| \n try again!")
     elif count == 4:
-        print("|-\ \n|  0 \n| /|\ \n|")
+        print("|-\ \n|  0 \n| /|\ \n| \n try again!")
     elif count == 5:
-        print("|-\ \n|  0 \n| /|\ \n|  | ")
+        print("|-\ \n|  0 \n| /|\ \n|  | \n try again!")
     elif count == 6:
-        print("|-\ \n|  0 \n| /|\ \n| /| ")
+        print("|-\ \n|  0 \n| /|\ \n| /| \n try again!")
     elif count == 7:
         print("|-\ \n|  0 \n| /|\ \n| /|\ \n Game Over, try new game")
-        return display_word(word)
-    
+        return display_word(words)
 
 
-def correct_letter(letter,length,count=0):
+
+def letter_check(word,length,blank,count=0):
     
-    length = len(letter)
-    # print(letter)
+    length = len(word)
+
+
+    
+    print(word)
     # print(count)
     # print('look',length)
     if length == 0 :
-        print('Game over')
+        print('Great!!')
         return
     else:
-        input_letter = input('insert letter \n')    
-        if input_letter in letter:
-            print('correct')
-            # print(length)
-            # letter.remove(input_letter)
-            letter = [x for x in letter if x != input_letter]
-            length = len([x for x in letter if x != input_letter])
-            
-            # print (letter)
-            # print(length)
-            
-            return correct_letter(letter,length,count)
+        input_letter = input('insert letter \n')
+        if input_letter in word:
+            for i in range (length):
+                if word[i] == input_letter:
+                    # blank = blank[:i] + input_letter + blank[i + 1:]   
+                    # blank[word.index(input_letter)]=input_letter
+                    blank += input_letter
+
+                    print(blank)
+
+                    word = [x for x in word if x != input_letter]
+                    length = len([x for x in word if x != input_letter])
+
+                    return (blank, letter_check(word,length,blank,count))
+        
         else:
             print('try again')
             count=count+1
-            return (wrong_answer(count),correct_letter(letter,length,count))
+            return (wrong_answer(count),letter_check(word,length,blank,count))
 
 def display_word(ls):
+    blank = ''
     random.shuffle(ls)
-    # print(ls[0])
-    letter = [char for char in ls[0]]
-    # print(letter)
-    print ("|-\ \n|    \n|    \n| \n", len(letter)*'_ ')
+    word = [char for char in ls[0]]
+    blank = len(word)*'_ '
+    print ("|-\ \n|    \n|    \n| \n", blank)
 
-    return correct_letter(letter,len(letter))
+    return letter_check(word,len(word),blank)
 
-display_word(word)
-
+display_word(words)
 
 
 
@@ -76,10 +81,4 @@ display_word(word)
 
 
 
-
-
-# |-\
-# |  0
-# | /|\
-# | /| \
 
