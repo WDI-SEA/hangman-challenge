@@ -1,15 +1,3 @@
-# Pseudocode
-# Initialize the game: Initialize all variables to default values.
-# Display hangman or number of guesses remaining.
-# Randomly select a secret word.
-# Display the word as blanks.
-# Display the letters guessed so far.
-# Ask the user for a letter.
-# Determine if letter is correct or incorrect.
-# If incorrect, add the letter to the guessed list, decrement remaining guesses, and/or draw another bit of the hangman.
-# If correct, add the letter to the guessed list, redraw the secret word with the new letter(s) showing.
-# Loop back up to step 6 and continue until the word is fully revealed or guesses are used up.
-
 import random
 from secret_words import secret_words
 import string
@@ -33,11 +21,11 @@ def hangman():
 
     # Ask the user for a letter.
     # Loop back up to step 6 and continue until the word is fully revealed or guesses are used up.
-    while len(word_letter) > 0:
+    while len(word_letter) > 0 and numbers > 0:
         print('You have ', numbers, 'lives left! And you guessed these letters: ',''.join(guessed_list))
 
         # diplaying the secret words which guessing
-        word_list = [letter if letter in used_letter else '-' for letter in word]
+        word_list = [letter if letter in guessed_list else '-' for letter in word]
         print('Secret Words: ', ''.join(word_list))
 
         input_letter = input('Guess a letter: ').lower() # lower case for input
@@ -56,13 +44,13 @@ def hangman():
         elif input_letter in guessed_list:
             print('\n This letter already used! Guess a new letter!')
         else:
-            print('n\That is not a valid letter! Guess a new letter!)
+            print('n\That is not a valid letter! Guess a new letter!')
 
     # gets here when len(word_letters) == 0 OR when numbers == 0
     if numbers == 0:
-        print('You died, sorry. The word was', word)
+        print('You died, sorry. The ANSWER is', word)
     else:
-        print('YAY! You guessed the word', word, '!!')
+        print('YAY! GOTCHA', word, '!!')
 
 if __name__ == '__main__':
     hangman()
