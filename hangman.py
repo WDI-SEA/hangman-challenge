@@ -24,18 +24,17 @@ def game_init():
                 print(f'Letter {user_answer} was found!')
                 guessed_letters.append(user_answer)
                 reveal_word = reveal_word + user_answer
-                print(reveal_word)
-                # if reveal_word == word:
-                #     print ('Congrats! You won!')
-                # else:
-                #     print('Keep trying!')
+                print(''.join(reveal_word))
+                new_word = ''.join(reveal_word)
+                if new_word == word:
+                    print('YOU WON! 😊')
+                    return
                 break
             else:
                 print(f'Letter {user_answer} was not found! Try again.')
-                guessed_letters.append(user_answer)
+                print(' '.join(spaces))
                 guesses -= 1
                 print(f'You have {guesses} remaining')
-                reveal_word = "_" + reveal_word
                 break
 
     else:
@@ -46,5 +45,3 @@ def game_init():
             print('Okay! Better luck next time!')
 
 game_init()
-
-
