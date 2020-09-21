@@ -17,7 +17,7 @@ def hangman():
     word_letter = set(word)  # letter in word
     alphabet = set(string.ascii_lowercase) # from english dictionary
     guessed_list = set() # Display the letters guessed so far.
-    numbers = 6 # Display hangman or number of guesses remaining.
+    numbers = 10 # Display hangman or number of guesses remaining.
 
     # Ask the user for a letter.
     # Loop back up to step 6 and continue until the word is fully revealed or guesses are used up.
@@ -50,7 +50,14 @@ def hangman():
     if numbers == 0:
         print('You died, sorry. The ANSWER is', word)
     else:
-        print('YAY! GOTCHA', word, '!!')
+        print('YAY! GOTCHA! It is ', word, '!!')
+
+# restart a game
+def main():
+    hangman()
+    while input("Play Again? (Y/N) ").upper() == "Y":
+
+        hangman()
 
 if __name__ == '__main__':
-    hangman()
+   main()
