@@ -9,7 +9,7 @@ def hangman(lst1):
     letters_guess = []
     good_guess = []
     tries_left = 6
-
+    print(hangman_animation(tries_left))
     def try_win(word, good_guess):
         if len(word) == len(good_guess):
             print("congratulations you win! The word was: "+word)
@@ -59,6 +59,7 @@ def hangman(lst1):
                     result_spaces = "".join(word_guess_list)
             try_win(word, good_guess)
             print("Good job the Letter: "+guess+" is in the word")
+        print(hangman_animation(tries_left))
     if tries_left == 0:
         print("Better luck next time, the word was: ", word)
         pa = input("Want to play again? (Y/N)")
@@ -67,6 +68,84 @@ def hangman(lst1):
             return hangman(word_list)
         else:
             exit()
+
+
+def hangman_animation(tries):
+    animation = [
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \|/
+                   |      |
+                   |     / \\
+                ___|____
+                |______|
+                """,
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \|/
+                   |      |
+                   |     /
+                ___|____
+                |______|
+                """,
+                # head, torso, and both arms
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \|/
+                   |      |
+                   |
+                ___|____
+                |______|
+                """,
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \|
+                   |      |
+                   |
+                ___|____
+                |______|
+                """,
+                """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |
+                ___|____
+                |______|
+                """,
+                """
+                   --------
+                   |      |
+                   |      O
+                   |
+                   |
+                   |
+                ___|____
+                |______|
+                """,
+                # initial empty state
+                """
+                   --------
+                   |      |
+                   |
+                   |
+                   |
+                   |
+                ___|____
+                |______|
+                """
+    ]
+    return animation[tries]
 
 
 hangman(word_list)
