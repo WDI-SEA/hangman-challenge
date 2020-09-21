@@ -17,7 +17,7 @@ def main(lst1):
 
     word1 = random.choice(lst1)
     word = word1.upper()
-    print(word)
+    # print(word)
     word_letter_sort = sorted(word)
     word_letter = []
     for i in word_letter_sort:

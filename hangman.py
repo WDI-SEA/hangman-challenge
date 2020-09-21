@@ -4,7 +4,7 @@ word_list = ['Hello', 'Computer', 'Together', 'Dog', 'Later', 'Yesterday']
 def hangman(lst1):
     word1 = random.choice(lst1)
     word = word1.upper()
-    print(word)
+    # print(word)
     result_spaces = "_ " * len(word)
     letters_guess = []
     good_guess = []
