@@ -45,19 +45,20 @@ def hangman():
         #incorrect letter guess
         #for incorrect guesses, subtract one turn
         else:
-            print("Try again")
-            turns = turns - 1
-            wrong.append(guess)
-    
-        print()
+            if turns > 0:
+                turns = turns - 1
+                wrong.append(guess)
+            if turns == 0:
+                print("game over")
 
     if turns:
-        print("You guessed the correct word:", list,"!")
+        print(f"You guessed the correct word: {list}!")
         playAgain()
     else:
-        print("You didn't get this word:", list,"😔")
+        print(f"You didn't get this word: {list} 😔")
         playAgain()       
 #hangman()
+
 
 def playAgain():
     playAgain = input("Do you want to play again? (y/n)\n")
@@ -66,6 +67,7 @@ def playAgain():
     else:
         print("See ya l8ter when you're brave enough to play!")
 
+# starts game
 def startGame():
     play = input("Do you want to play hangman? (y/n)\n")
     # if yes, start the game
