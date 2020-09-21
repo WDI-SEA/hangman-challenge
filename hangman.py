@@ -27,13 +27,25 @@ def hangman(lst1):
         print(result_spaces)
         guess = input("Enter a letter: ").upper()
         if len(guess) > 1:
-            print("Please enter only one letter")
+            if guess == word:
+                print("congratulations you win! The word was: "+word)
+                pa = input("Want to play again? (Y/N)")
+                playagain = pa.upper()
+                if playagain == 'Y':
+                    return hangman(word_list)
+                else:
+                    exit()
+            else:
+                print("Sorry "+guess+" is not in the word")
+                tries_left -= 1
+                print("You have: "+str(tries_left)+" tries left!")
         elif guess in letters_guess:
             print("sorry the letter "+guess+" has already been picked")
         elif guess not in word:
             print("Sorry "+guess+" is not in the word")
             tries_left -= 1
             print("You have: "+str(tries_left)+" tries left!")
+            letters_guess.append(guess)
         else:
             letters_guess.append(guess)
             word_guess_list = list(result_spaces)
