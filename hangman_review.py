@@ -100,7 +100,7 @@ def game_init():
 
     i = 0
     while i < len(secret_word):
-        underscored_secret_word = underscored_secret_word + "_"
+        underscored_secret_word = underscored_secret_word + "_ "
         i += 1
 
 
