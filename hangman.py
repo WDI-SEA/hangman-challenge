@@ -7,6 +7,9 @@ list = choice(["underscores", "corgis", "ramen", "pseudocode", "variables", "rev
 # empty list where correct letters are added
 guessed = []
 
+# stores all the incorrect guesses
+wrong = []
+
 #loops that asks for letters
 while True:
     out = ""
@@ -38,6 +41,7 @@ while True:
     #incorrect letter guess
     else:
         print("Try again")
+        wrong.append(guess)
     
     print()
 
